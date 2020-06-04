@@ -6,6 +6,16 @@
 class varnish::params {
 
   case $::osfamily {
+    'FreeBSD': {
+      $sysconfig  = '/etc/defaults/varnish.conf'
+
+      # FIXME: crashes when reloading a stopped service
+      #$vcl_reload = '/usr/sbin/service varnishd reload'
+      $vcl_reload = '/usr/sbin/service varnishd restart'
+
+      $os_service_provider = 'sysvinit'
+    }
+
     'RedHat': {
 
       $sysconfig  = '/etc/sysconfig/varnish'

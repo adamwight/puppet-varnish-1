@@ -24,7 +24,7 @@ class varnish::config {
 
   file { $::varnish::params::sysconfig:
     owner   => 'root',
-    group   => 'root',
+    group   => 'wheel',
     mode    => '0644',
     content => template('varnish/sysconfig.erb'),
   }
@@ -35,7 +35,7 @@ class varnish::config {
     file { '/etc/systemd/system/varnish.service':
       ensure  => file,
       owner   => 'root',
-      group   => 'root',
+      group   => 'wheel',
       mode    => '0644',
       content => template('varnish/varnish.service.erb'),
       notify  => Exec['varnish_systemctl_daemon_reload'],

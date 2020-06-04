@@ -14,7 +14,7 @@ define varnish::vcl (
   file { $file:
     content => $content,
     owner   => 'root',
-    group   => 'root',
+    group   => 'wheel',
     mode    => '0644',
     require => Class['varnish::install'],
     notify  => Exec['vcl_reload'],

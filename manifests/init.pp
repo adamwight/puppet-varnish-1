@@ -42,14 +42,14 @@
 #
 class varnish (
   Hash $runtime_params                      = {},
-  Boolean $addrepo                          = true,
+  Boolean $addrepo                          = false,
   String $admin_listen                      = '127.0.0.1',
   Integer $admin_port                       = 6082,
   Variant[String,Array] $listen             = '0.0.0.0',
   Integer $listen_port                      = 6081,
   Optional[String] $secret                  = undef,
-  Stdlib::AbsolutePath $secret_file         = '/etc/varnish/secret',
-  Stdlib::AbsolutePath $vcl_conf            = '/etc/varnish/default.vcl',
+  Stdlib::AbsolutePath $secret_file         = '/usr/local/etc/varnish/secret',
+  Stdlib::AbsolutePath $vcl_conf            = '/usr/local/etc/varnish/default.vcl',
   Enum['file','malloc'] $storage_type       = 'file',
   Stdlib::AbsolutePath $storage_file        = '/var/lib/varnish/varnish_storage.bin',
   String $storage_size                      = '1G',
@@ -60,8 +60,8 @@ class varnish (
   Pattern[/^[3-6]\.[0-9](lts)?/] $varnish_version = '4.1',
   Optional[String] $instance_name           = undef,
   String $package_ensure                    = 'present',
-  String $package_name                      = 'varnish',
-  String $service_name                      = 'varnish',
+  String $package_name                      = 'varnish4',
+  String $service_name                      = 'varnishd',
   Optional[String] $vcl_reload_cmd          = undef,
   String $vcl_reload_path                   = $::path,
 ) {

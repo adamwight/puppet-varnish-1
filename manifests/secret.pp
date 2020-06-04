@@ -22,8 +22,8 @@ class varnish::secret (
     }
 
     exec { 'Generate Varnish secret file':
-      unless  => "/bin/egrep '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$' '${::varnish::secret_file}' >/dev/null",
-      command => "/bin/cp /proc/sys/kernel/random/uuid '${::varnish::secret_file}'",
+      unless  => "/usr/bin/egrep '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$' '${::varnish::secret_file}' >/dev/null",
+      command => "/bin/uuidgen > '${::varnish::secret_file}'",
     }
 
   }
