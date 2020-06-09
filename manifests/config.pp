@@ -49,4 +49,13 @@ class varnish::config {
     }
   }
 
+  # TODO: transfer all tuning params
+  file { '/etc/rc.conf.d/varnishd':
+    content => template('varnish/rc.conf.epp'),
+    ensure => present,
+    mode => '0644',
+    owner => 'root',
+    group => 'wheel',
+  }
+
 }

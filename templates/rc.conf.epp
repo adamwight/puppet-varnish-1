@@ -1,0 +1,5 @@
+varnishd_enable='YES'
+
+varnishd_config='<%= scope['::varnish::vcl_conf'] %>'
+varnishd_extra_flags='<%- scope['::varnish::runtime_params'].each do |k,v| -%>-p <%= k %>=<%= v %> <% end -%>-S <%= scope['::varnish::secret_file'] %>'
+varnishd_storage='<%= scope['::varnish::storage_type'] %>,<%= scope['::varnish::storage_size'] %>'
