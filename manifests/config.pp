@@ -47,4 +47,13 @@ class varnish::config {
       notify      => Service[$varnish::service_name],
     }
   }
+
+  # TODO: transfer all tuning params
+  file { '/etc/rc.conf.d/varnishd':
+    ensure  => file,
+    content => template('varnish/rc.conf.epp'),
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'wheel',
+  }
 }
